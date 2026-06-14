@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE38A"></stop>
+      <stop offset="1" stop-color="#B98817"></stop>
+    </linearGradient>
+  </defs>
+  <g fill="url(#lg)">
+    
+    <g transform="translate(60,60)">
+      <path d="M0 0 Q-20 -8 -38 -28 Q-30 -10 -10 4 Z"></path>
+      <path d="M0 0 Q-22 4 -42 -8 Q-30 6 -8 12 Z"></path>
+      <path d="M0 0 Q-22 -22 -34 -44 Q-22 -22 -4 -10 Z"></path>
+      <path d="M0 0 Q-10 -28 -16 -52 Q-8 -28 4 -16 Z"></path>
+      <path d="M0 0 Q-6 14 -22 26 Q-10 14 6 4 Z"></path>
+    </g>
+    
+    <g transform="translate(140,60) scale(-1,1)">
+      <path d="M0 0 Q-20 -8 -38 -28 Q-30 -10 -10 4 Z"></path>
+      <path d="M0 0 Q-22 4 -42 -8 Q-30 6 -8 12 Z"></path>
+      <path d="M0 0 Q-22 -22 -34 -44 Q-22 -22 -4 -10 Z"></path>
+      <path d="M0 0 Q-10 -28 -16 -52 Q-8 -28 4 -16 Z"></path>
+      <path d="M0 0 Q-6 14 -22 26 Q-10 14 6 4 Z"></path>
+    </g>
+  </g>
+  
+  <path d="M100 14 L103 22 L111 22 L105 27 L107 35 L100 30 L93 35 L95 27 L89 22 L97 22 Z" fill="#F6F8FF"></path>
+</svg>

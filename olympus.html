@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Olympus Games — A Veratus studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" type="image/svg+xml" href="assets/veratus-mark.svg"/>
+<link rel="stylesheet" href="veratus.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"/>
+<style>
+  /* Whole page wears the Olympus night sky */
+  body.oly-page {
+    background:
+      radial-gradient(58% 40% at 80% 8%, rgba(44,58,115,.55), transparent 70%),
+      radial-gradient(52% 46% at 8% 70%, rgba(31,42,85,.5), transparent 70%),
+      linear-gradient(180deg,#070A16 0%, #0A0E1F 55%, #0B1024 100%);
+    background-attachment: fixed;
+  }
+  .oly-page .nav { background: rgba(7,10,22,0.72); border-bottom-color: rgba(255,255,255,.08); }
+
+  .ohead { position: relative; overflow: hidden; border-bottom: 1px solid rgba(245,199,84,.18); }
+  .ohead__stars { position:absolute; left:0; top:0; width:100%; height:340px; opacity:.7; pointer-events:none; }
+  .ohead__mtn { position:absolute; left:0; bottom:-1px; width:100%; height:58%; opacity:.5; pointer-events:none; }
+  .ohead__laurel { position:absolute; right:5%; top:14%; width:min(360px,30vw); opacity:.08; pointer-events:none; }
+  .ohead__inner { position:relative; z-index:1; padding-block: clamp(52px,8vw,104px); }
+  .ocrumbs { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#5F6A91; }
+  .ocrumbs a { color:#8893BC; }
+  .ocrumbs a:hover { color:#F5C754; }
+  .oly-eye { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.2em; color:#8893BC; display:inline-flex; align-items:center; gap:10px; }
+  .oly-eye .idx { color:#F5C754; }
+  .ohead__logo { width:min(480px,86%); height:auto; margin:22px 0 26px; }
+  .oly-h1 { margin:0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(40px,7vw,96px); letter-spacing:-.03em; line-height:.95; color:#F6F8FF; }
+  .oly-lede { margin:24px 0 0; font-family:'Inter',sans-serif; font-size:clamp(16px,1.7vw,21px); line-height:1.5; color:#B9C2E0; max-width:54ch; }
+  .ohead__stats { margin-top:40px; display:flex; gap:40px; flex-wrap:wrap; }
+  .ostat { display:flex; flex-direction:column; gap:4px; }
+  .ostat .v { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:44px; letter-spacing:-.02em; line-height:1; color:#F5C754; }
+  .ostat .l { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#8893BC; }
+
+  .osec { padding-block: clamp(56px,8vw,104px); }
+  .oly-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .gtile { position:relative; border-radius:16px; overflow:hidden; aspect-ratio:4/5; border:1px solid rgba(255,255,255,.08); background:linear-gradient(155deg,#161E40,#0F1530); transition:transform .22s cubic-bezier(.16,.84,.24,1), box-shadow .22s; }
+  .gtile:hover { transform:translateY(-5px); box-shadow:0 22px 48px -18px rgba(0,0,0,.75); }
+  .gtile__art { position:absolute; inset:0;
+    background:
+      radial-gradient(60% 60% at 50% 30%, color-mix(in srgb,var(--gc) 22%,transparent), transparent 70%),
+      linear-gradient(180deg, color-mix(in srgb,var(--gc) 13%,transparent) 0%, transparent 50%, #05070F 100%); }
+  .gtile__glyph { position:absolute; top:10%; left:50%; transform:translateX(-50%); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(130px,17vw,210px); letter-spacing:-.04em; color:var(--gc); opacity:.18; line-height:1; pointer-events:none; }
+  .gtile__body { position:relative; z-index:1; height:100%; padding:26px; display:flex; flex-direction:column; justify-content:space-between; }
+  .gtile__top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .gtile__tag { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.22em; color:var(--gc); }
+  .gtile__flag { padding:4px 10px; border-radius:999px; background:color-mix(in srgb,var(--gc) 14%,transparent); border:1px solid color-mix(in srgb,var(--gc) 42%,transparent); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; color:var(--gc); white-space:nowrap; }
+  .gtile__name { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(24px,2.4vw,30px); letter-spacing:-.02em; line-height:1; color:#F6F8FF; }
+  .gtile__genre { margin-top:6px; font-family:'Inter',sans-serif; font-size:14px; color:#B9C2E0; }
+  .gtile__desc { margin-top:12px; font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.5; color:#8893BC; }
+  .gtile__plat { margin-top:16px; display:flex; gap:8px; }
+  .gtile__plat span { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:#8893BC; padding:5px 10px; border:1px solid rgba(255,255,255,.14); border-radius:3px; }
+
+  .ostudio { display:grid; grid-template-columns:0.9fr 1.4fr; gap:clamp(28px,5vw,64px); align-items:start;
+    border-top:1px solid rgba(255,255,255,.08); padding-top:clamp(48px,7vw,80px); }
+  .ostudio h2 { margin:0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.025em; line-height:1.04; color:#F6F8FF; }
+  .ostudio p { font-family:'Inter',sans-serif; font-size:17px; line-height:1.6; color:#B9C2E0; }
+
+  .octa { position:relative; overflow:hidden; border-top:1px solid rgba(245,199,84,.18); text-align:center; padding-block:clamp(64px,9vw,120px); }
+  .octa__laurel { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:380px; opacity:.1; pointer-events:none; }
+  .ogold-btn {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    padding:16px 28px; border-radius:4px; color:#1A1206;
+    background:linear-gradient(180deg,#FFE38A 0%, #F5C754 55%, #B98817 100%);
+    box-shadow:0 0 0 1px rgba(245,199,84,.55), 0 10px 28px -8px rgba(245,199,84,.5);
+    transition:transform .14s cubic-bezier(.34,1.4,.5,1), filter .2s;
+  }
+  .ogold-btn:hover { filter:brightness(1.05); transform:translateY(-2px); }
+  .ogold-btn:active { transform:translateY(1px); }
+  .oghost-btn {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; letter-spacing:.06em; text-transform:uppercase;
+    padding:16px 26px; border-radius:4px; color:#E4E8FA;
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.16);
+    transition:border-color .18s, background .18s;
+  }
+  .oghost-btn:hover { border-color:#F6F8FF; background:rgba(255,255,255,.07); }
+
+  @media (max-width:860px){ .ostudio { grid-template-columns:1fr; } .ohead__stats { gap:28px; } }
+  @media (max-width:720px){ .oly-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body class="oly-page" data-screen-label="Olympus Games">
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="brand" href="index.html" aria-label="Veratus Group home">
+        <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect x="6" y="38" width="17" height="17" rx="3.5" fill="#3A3CE0"></rect><rect x="40.5" y="9" width="17" height="17" rx="3.5" fill="#7378FF"></rect>
+          <rect x="23" y="23.5" width="17" height="17" rx="3.5" fill="#4B4DF2"></rect>
+        </svg>
+        <span class="brand__name">VERATUS<b>.</b></span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link" href="subsidiaries.html" aria-current="page">Subsidiaries</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link nav__link--keep" href="contact.html">Contact</a>
+        <a class="btn btn--ghost nav__cta" href="subsidiaries.html">All work <span class="arr">→</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- OLYMPUS HEAD -->
+    <section class="ohead">
+      <svg class="ohead__stars" viewBox="0 0 1920 600" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+        <g fill="#F6F8FF">
+          <circle cx="180" cy="90" r="1.4"></circle><circle cx="360" cy="150" r="1"></circle>
+          <circle cx="560" cy="70" r="1.2"></circle><circle cx="760" cy="130" r="1.5"></circle>
+          <circle cx="980" cy="44" r="1"></circle><circle cx="1080" cy="92" r="1"></circle>
+          <circle cx="1280" cy="160" r="1.3"></circle><circle cx="1480" cy="70" r="1.2"></circle>
+          <circle cx="1660" cy="140" r="1.4"></circle><circle cx="1790" cy="64" r="1.1"></circle>
+        </g>
+      </svg>
+      <svg class="ohead__mtn" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <path d="M0 820 L240 540 L420 720 L640 480 L900 700 L1100 520 L1320 760 L1560 580 L1780 720 L1920 660 L1920 1080 L0 1080 Z" fill="#05070F"></path>
+        <path d="M0 880 L300 660 L520 820 L780 600 L1000 800 L1240 620 L1520 840 L1760 700 L1920 780 L1920 1080 L0 1080 Z" fill="#080B19"></path>
+      </svg>
+      <img class="ohead__laurel" src="assets/olympus-laurel.svg" alt="" aria-hidden="true"/>
+
+      <div class="wrap ohead__inner">
+        <p class="ocrumbs"><a href="index.html">Veratus</a> / <a href="subsidiaries.html">Subsidiaries</a> / Olympus Games</p>
+        <img class="ohead__logo" src="assets/olympus-lockup.svg" alt="Olympus Games"/>
+        <h1 class="oly-h1">Three worlds.<br/>One studio.</h1>
+        <p class="oly-lede">
+          Olympus Games is Veratus Group's mobile game studio — competitive,
+          lore-rich titles with Greek-mythology DNA, reframed for a modern audience.
+          Three games are in active development for iOS and Android.
+        </p>
+        <div class="ohead__stats">
+          <div class="ostat"><span class="v">03</span><span class="l">Titles in development</span></div>
+          <div class="ostat"><span class="v" style="color:#5EE3FF;">iOS</span><span class="l">+ Android · 2026</span></div>
+          <div class="ostat"><span class="v">★</span><span class="l">A Veratus studio</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE LINEUP -->
+    <section class="osec">
+      <div class="wrap">
+        <p class="oly-eye" style="margin-bottom:18px; color:#F5C754;"><span class="idx">▸</span> The lineup</p>
+        <div class="oly-grid">
+          <article class="gtile" style="--gc:#F5C754;">
+            <div class="gtile__art"></div>
+            <div class="gtile__glyph">A</div>
+            <div class="gtile__body">
+              <div class="gtile__top">
+                <span class="gtile__tag">SHOOTER</span>
+                <span class="gtile__flag">In development</span>
+              </div>
+              <div>
+                <div class="gtile__name">Apex Drift</div>
+                <div class="gtile__genre">Fast-paced shooter</div>
+                <div class="gtile__desc">Reflex-driven combat tuned for short, intense mobile sessions.</div>
+                <div class="gtile__plat"><span>iOS</span><span>Android</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="gtile" style="--gc:#A78BFA;">
+            <div class="gtile__art"></div>
+            <div class="gtile__glyph">L</div>
+            <div class="gtile__body">
+              <div class="gtile__top">
+                <span class="gtile__tag">RPG</span>
+                <span class="gtile__flag">In development</span>
+              </div>
+              <div>
+                <div class="gtile__name">Lost in the Woods</div>
+                <div class="gtile__genre">Immersive mobile RPG</div>
+                <div class="gtile__desc">Atmospheric exploration and story in a world that pulls you in.</div>
+                <div class="gtile__plat"><span>iOS</span><span>Android</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="gtile" style="--gc:#5EE3FF;">
+            <div class="gtile__art"></div>
+            <div class="gtile__glyph">T</div>
+            <div class="gtile__body">
+              <div class="gtile__top">
+                <span class="gtile__tag">PUZZLE</span>
+                <span class="gtile__flag">In development</span>
+              </div>
+              <div>
+                <div class="gtile__name">Triagles</div>
+                <div class="gtile__genre">Mind-engaging puzzle</div>
+                <div class="gtile__desc">A clever, minimalist puzzler built around one sharp idea.</div>
+                <div class="gtile__plat"><span>iOS</span><span>Android</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- STUDIO -->
+        <div class="ostudio" style="margin-top:clamp(48px,7vw,80px);">
+          <p class="oly-eye"><span class="idx">01</span> The studio</p>
+          <div class="stack">
+            <h2>Built for the climb.</h2>
+            <p>
+              Olympus designs competitive mobile worlds with depth — games you can
+              come back to every day and keep climbing. Each title is built native
+              and fast, with a ranked spine and a world worth living in.
+            </p>
+            <p style="color:#8893BC; font-size:15px;">
+              Olympus Games operates as the games division of Veratus Group. Release
+              dates, store links, and press materials follow as each title nears launch.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="octa">
+      <img class="octa__laurel" src="assets/olympus-laurel.svg" alt="" aria-hidden="true"/>
+      <div class="wrap" style="position:relative; z-index:1;">
+        <p class="oly-eye" style="justify-content:center; color:#F5C754;">★ The climb starts here</p>
+        <h2 class="oly-h1" style="font-size:clamp(34px,5vw,68px); margin-top:18px;">Step onto the mountain.</h2>
+        <div class="row" style="justify-content:center; margin-top:30px; gap:14px;">
+          <a class="ogold-btn" href="contact.html">Get in touch <span>→</span></a>
+          <a class="oghost-btn" href="subsidiaries.html">Back to subsidiaries</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__top">
+      <div class="foot__col">
+        <a class="brand" href="index.html" style="margin-bottom:18px;">
+          <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <rect x="6" y="38" width="17" height="17" rx="3.5" fill="#3A3CE0"></rect><rect x="40.5" y="9" width="17" height="17" rx="3.5" fill="#7378FF"></rect>
+            <rect x="23" y="23.5" width="17" height="17" rx="3.5" fill="#4B4DF2"></rect>
+          </svg>
+          <span class="brand__name">VERATUS<b>.</b></span>
+        </a>
+        <p class="body" style="max-width:34ch;">An independent technology group building software and games.</p>
+        <p class="body muted" style="max-width:34ch; margin-top:10px; font-size:12.5px; line-height:1.5;">Veratus Group Limited · Registered in England and Wales · Company no. 17258282 · 10 Chalet Close, Bexley, DA1 5RP</p>
+      </div>
+      <div class="foot__col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="subsidiaries.html">Subsidiaries</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="foot__col">
+        <h4>Divisions</h4>
+        <a href="subsidiaries.html#filecura">FileCura</a>
+        <a href="https://filecura.com" target="_blank" rel="noopener">filecura.com ↗</a>
+        <a href="olympus.html">Olympus Games</a>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 Veratus Group</span>
+      <span>veratusgroup.com</span>
+    </div>
+  </footer>
+  <script data-vg-reveal>
+  (function(){
+    var sels = ['.hero__inner','.pagehead__inner','.ohead__inner','.ctaband__inner','.octa > .wrap','.section > .wrap','.osec > .wrap'];
+    var add = [];
+    sels.forEach(function(s){ document.querySelectorAll(s).forEach(function(el){
+      if(el.classList.contains('fade-up')) return;
+      if(el.querySelector('.fade-up')) return;
+      el.classList.add('fade-up'); add.push(el);
+    }); });
+    if(!('IntersectionObserver' in window)){ add.forEach(function(el){ el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' });
+    add.forEach(function(el){ io.observe(el); });
+  })();
+  </script>
+</body>
+</html>
