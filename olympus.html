@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Olympus Games — A Veratus studio</title>
+<title>Veratus Games — A Veratus Group studio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel="icon" type="image/svg+xml" href="assets/veratus-mark.svg"/>
 <link rel="stylesheet" href="veratus.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"/>
 <style>
-  /* Whole page wears the Olympus night sky */
+  /* Whole page wears the night sky */
   body.oly-page {
     background:
       radial-gradient(58% 40% at 80% 8%, rgba(44,58,115,.55), transparent 70%),
@@ -55,6 +55,44 @@
   .gtile__plat { margin-top:16px; display:flex; gap:8px; }
   .gtile__plat span { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:#8893BC; padding:5px 10px; border:1px solid rgba(255,255,255,.14); border-radius:3px; }
 
+  /* === Apex Drift — launched tile: whole card links to the App Store,
+        hover/focus reveals a cross-fading screenshot reel === */
+  a.gtile { text-decoration:none; color:inherit; display:block; }
+  .gtile--live { cursor:pointer; }
+  .gtile--live:focus-visible { outline:2px solid #F5C754; outline-offset:3px; }
+  .gtile__shots { position:absolute; inset:0; z-index:0; opacity:0; transition:opacity .4s ease; pointer-events:none; }
+  .gtile--live:hover .gtile__shots,
+  .gtile--live:focus-visible .gtile__shots { opacity:1; }
+  .gtile__shots img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; opacity:0; }
+  .gtile__shots img:first-child { object-fit:contain; background:#05070F; } /* app icon shown whole, not cropped */
+  .gtile--live:hover .gtile__shots img,
+  .gtile--live:focus-visible .gtile__shots img { animation-name:apexReel; animation-duration:12s; animation-iteration-count:infinite; }
+  .gtile__shots img:nth-child(1){ animation-delay:0s; }
+  .gtile__shots img:nth-child(2){ animation-delay:2.4s; }
+  .gtile__shots img:nth-child(3){ animation-delay:4.8s; }
+  .gtile__shots img:nth-child(4){ animation-delay:7.2s; }
+  .gtile__shots img:nth-child(5){ animation-delay:9.6s; }
+  @keyframes apexReel { 0%{opacity:0;} 2.5%{opacity:1;} 17%{opacity:1;} 20%{opacity:0;} 100%{opacity:0;} }
+  /* fade the resting art + glyph back so the screenshots read clearly */
+  .gtile--live:hover .gtile__art, .gtile--live:hover .gtile__glyph,
+  .gtile--live:focus-visible .gtile__art, .gtile--live:focus-visible .gtile__glyph { opacity:.10; transition:opacity .4s ease; }
+  /* scrim keeps the tag + name + CTA legible over a busy screenshot */
+  .gtile--live .gtile__body { position:relative; z-index:2; }
+  .gtile--live:hover .gtile__body, .gtile--live:focus-visible .gtile__body {
+    background:linear-gradient(180deg, rgba(5,7,15,.62) 0%, rgba(5,7,15,.12) 26%, rgba(5,7,15,.5) 60%, rgba(5,7,15,.92) 100%); }
+  /* "Out now" live pill (green = launched, distinct from the gold in-dev flags) */
+  .gtile__flag--live { background:rgba(91,227,138,.16); border-color:rgba(91,227,138,.5); color:#9CF5BE; }
+  /* App Store CTA line */
+  .gtile__store { margin-top:14px; display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#F5C754; }
+  .gtile__store .arr { transition:transform .18s; }
+  .gtile--live:hover .gtile__store .arr, .gtile--live:focus-visible .gtile__store .arr { transform:translateX(4px); }
+  /* reduced motion: show the first screenshot statically, no reel cycling */
+  @media (prefers-reduced-motion: reduce){
+    .gtile--live:hover .gtile__shots img, .gtile--live:focus-visible .gtile__shots img { animation:none; }
+    .gtile--live:hover .gtile__shots img:first-child, .gtile--live:focus-visible .gtile__shots img:first-child { opacity:1; }
+  }
+
   .ostudio { display:grid; grid-template-columns:0.9fr 1.4fr; gap:clamp(28px,5vw,64px); align-items:start;
     border-top:1px solid rgba(255,255,255,.08); padding-top:clamp(48px,7vw,80px); }
   .ostudio h2 { margin:0; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.025em; line-height:1.04; color:#F6F8FF; }
@@ -85,7 +123,7 @@
   @media (max-width:720px){ .oly-grid { grid-template-columns:1fr; } }
 </style>
 </head>
-<body class="oly-page" data-screen-label="Olympus Games">
+<body class="oly-page" data-screen-label="Veratus Games">
 
   <header class="nav">
     <div class="nav__inner">
@@ -107,7 +145,7 @@
   </header>
 
   <main>
-    <!-- OLYMPUS HEAD -->
+    <!-- VERATUS GAMES HEAD -->
     <section class="ohead">
       <svg class="ohead__stars" viewBox="0 0 1920 600" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
         <g fill="#F6F8FF">
@@ -125,11 +163,11 @@
       <img class="ohead__laurel" src="assets/olympus-laurel.svg" alt="" aria-hidden="true"/>
 
       <div class="wrap ohead__inner">
-        <p class="ocrumbs"><a href="index.html">Veratus</a> / <a href="subsidiaries.html">Subsidiaries</a> / Olympus Games</p>
-        <img class="ohead__logo" src="assets/olympus-lockup.svg" alt="Olympus Games"/>
+        <p class="ocrumbs"><a href="index.html">Veratus</a> / <a href="subsidiaries.html">Subsidiaries</a> / Veratus Games</p>
+        <img class="ohead__logo" src="assets/olympus-lockup.svg" alt="Veratus Games"/>
         <h1 class="oly-h1">Three worlds.<br/>One studio.</h1>
         <p class="oly-lede">
-          Olympus Games is Veratus Group's mobile game studio — competitive,
+          Veratus Games is Veratus Group's mobile game studio — competitive,
           lore-rich titles with Greek-mythology DNA, reframed for a modern audience.
           Three games are in active development for iOS and Android.
         </p>
@@ -146,22 +184,33 @@
       <div class="wrap">
         <p class="oly-eye" style="margin-bottom:18px; color:#F5C754;"><span class="idx">▸</span> The lineup</p>
         <div class="oly-grid">
-          <article class="gtile" style="--gc:#F5C754;">
+          <a class="gtile gtile--live" style="--gc:#F5C754;"
+             href="https://apps.apple.com/us/app/apex-drift/id6777362579"
+             target="_blank" rel="noopener"
+             aria-label="Apex Drift — download on the App Store (opens in a new tab)">
             <div class="gtile__art"></div>
             <div class="gtile__glyph">A</div>
+            <div class="gtile__shots" aria-hidden="true">
+              <img src="assets/apex/apex-icon.jpg" alt="" decoding="async"/>
+              <img src="assets/apex/apex-1.jpg" alt="" loading="lazy" decoding="async"/>
+              <img src="assets/apex/apex-2.jpg" alt="" loading="lazy" decoding="async"/>
+              <img src="assets/apex/apex-3.jpg" alt="" loading="lazy" decoding="async"/>
+              <img src="assets/apex/apex-4.jpg" alt="" loading="lazy" decoding="async"/>
+            </div>
             <div class="gtile__body">
               <div class="gtile__top">
                 <span class="gtile__tag">SHOOTER</span>
-                <span class="gtile__flag">In development</span>
+                <span class="gtile__flag gtile__flag--live">● Out now</span>
               </div>
               <div>
                 <div class="gtile__name">Apex Drift</div>
                 <div class="gtile__genre">Fast-paced shooter</div>
                 <div class="gtile__desc">Reflex-driven combat tuned for short, intense mobile sessions.</div>
-                <div class="gtile__plat"><span>iOS</span><span>Android</span></div>
+                <div class="gtile__plat"><span>iOS</span></div>
+                <span class="gtile__store">Download on the App Store <span class="arr">→</span></span>
               </div>
             </div>
-          </article>
+          </a>
           <article class="gtile" style="--gc:#A78BFA;">
             <div class="gtile__art"></div>
             <div class="gtile__glyph">L</div>
@@ -202,12 +251,12 @@
           <div class="stack">
             <h2>Built for the climb.</h2>
             <p>
-              Olympus designs competitive mobile worlds with depth — games you can
+              Veratus Games designs competitive mobile worlds with depth — games you can
               come back to every day and keep climbing. Each title is built native
               and fast, with a ranked spine and a world worth living in.
             </p>
             <p style="color:#8893BC; font-size:15px;">
-              Olympus Games operates as the games division of Veratus Group. Release
+              Veratus Games operates as the games division of Veratus Group. Release
               dates, store links, and press materials follow as each title nears launch.
             </p>
           </div>
@@ -253,7 +302,7 @@
         <h4>Divisions</h4>
         <a href="subsidiaries.html#filecura">FileCura</a>
         <a href="https://filecura.com" target="_blank" rel="noopener">filecura.com ↗</a>
-        <a href="olympus.html">Olympus Games</a>
+        <a href="olympus.html">Veratus Games</a>
       </div>
     </div>
     <div class="foot__bottom">
