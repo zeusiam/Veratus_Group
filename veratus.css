@@ -1,7 +1,7 @@
 /* =========================================================================
    VERATUS GROUP — Brand foundation
    Bold, high-contrast editorial-tech. Ink + paper + one electric accent.
-   A holding-company voice above Olympus Games & FileCura.
+   A holding-company voice above Veratus Games & FileCura.
    ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600&display=swap');
@@ -199,7 +199,7 @@ body::-webkit-scrollbar-thumb:hover { background: #2c3038; }
     0 4px 12px -6px rgba(96,79,255,0.5);
 }
 
-/* Olympus Games — gold gradient button (matches the Olympus studio theme) */
+/* Veratus Games — gold gradient button (matches the studio theme) */
 .btn--olympus {
   background: linear-gradient(180deg,#FFE38A 0%, #F5C754 55%, #B98817 100%);
   color: #1A1206;

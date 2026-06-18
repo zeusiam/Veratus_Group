@@ -1,22 +1,22 @@
 # Veratus Group — corporate site
 
-Static HTML site for **veratusgroup.com**. Sister site to filecura.com. Authored as a self-contained design system: bold editorial-tech, indigo accent ("Voltage"), Olympus night-sky theme on the games page, dedicated FileCura wordmark + slideshow component.
+Static HTML site for **veratusgroup.com**. Sister site to filecura.com. Authored as a self-contained design system: bold editorial-tech, indigo accent ("Voltage"), night-sky theme on the games page, dedicated FileCura wordmark + slideshow component.
 
 ## File tree
 
 ```
 veratusgroup-site/
 ├── index.html              Home — hero, two division blocks, ticker, CTA
-├── subsidiaries.html       Division breakdown — FileCura + Olympus overview
-├── olympus.html            Olympus Games studio — night-sky theme, 3 game tiles
+├── subsidiaries.html       Division breakdown — FileCura + Veratus Games overview
+├── olympus.html            Veratus Games studio — night-sky theme, 3 game tiles
 ├── about.html              Who we are, principles, group structure
 ├── contact.html            Email + brief
 ├── veratus.css             Single design-system stylesheet
 ├── fc-slideshow.js         Auto-cycling FileCura screenshot slideshow
 └── assets/
     ├── veratus-mark.svg            3-square Veratus logomark
-    ├── olympus-mark.svg            Olympus mark
-    ├── olympus-lockup.svg          Olympus full lockup (used on hero + tile)
+    ├── olympus-mark.svg            Veratus Games mark
+    ├── olympus-lockup.svg          Veratus Games full lockup (used on hero + tile)
     ├── olympus-laurel.svg          Decorative laurel motif
     ├── filecura-wordmark.png       FileCura wordmark on white plate
     ├── filecura-logo.png           FileCura square icon
@@ -44,9 +44,9 @@ Defined in `veratus.css`:
 - **Type** — Archivo (display) · Inter (body) · IBM Plex Mono (mono). Google Fonts loaded via `@import` at the top of the stylesheet.
 - **Surfaces** — `--ink` dark surfaces vs `--paper` light surfaces. Pages flip via `class="on-ink"` or `class="on-paper"` on sections.
 - **Accent** — "Voltage" indigo (`#4B4DF2` / `#7378FF`). Use `--accent` and `--accent-bright`.
-- **Brand buttons** — `.btn--filecura` (purple-blue gradient pill) for FileCura CTAs. `.btn--olympus` (gold gradient) for Olympus CTAs.
-- **Olympus theme** — `body class="oly-page"` swaps the whole page to a deep navy night-sky background with SVG stars, mountain silhouette, and laurel.
-- **Components** — `.shot` (framed image placeholder), `.fc-slides` (auto-cycling slideshow), `.gtile` (Olympus game tile), `.divblock` (large feature row), `.ticker` (auto-scrolling word strip), `.fade-up` (intersection-observer reveal), `.ticks` (corner-tick framing).
+- **Brand buttons** — `.btn--filecura` (purple-blue gradient pill) for FileCura CTAs. `.btn--olympus` (gold gradient) for Veratus Games CTAs.
+- **Night-sky theme** — `body class="oly-page"` swaps the whole page to a deep navy night-sky background with SVG stars, mountain silhouette, and laurel.
+- **Components** — `.shot` (framed image placeholder), `.fc-slides` (auto-cycling slideshow), `.gtile` (game tile), `.divblock` (large feature row), `.ticker` (auto-scrolling word strip), `.fade-up` (intersection-observer reveal), `.ticks` (corner-tick framing).
 
 ## Deployment
 
