@@ -82,13 +82,6 @@
     background:linear-gradient(180deg, rgba(5,7,15,.62) 0%, rgba(5,7,15,.12) 26%, rgba(5,7,15,.5) 60%, rgba(5,7,15,.92) 100%); }
   /* "Out now" live pill (green = launched, distinct from the gold in-dev flags) */
   .gtile__flag--live { background:rgba(91,227,138,.16); border-color:rgba(91,227,138,.5); color:#9CF5BE; }
-  /* "Coming soon" pill (amber = imminent launch); non-link tile keeps the default cursor */
-  .gtile__flag--soon { background:rgba(245,199,84,.16); border-color:rgba(245,199,84,.5); color:#FFE38A; }
-  .gtile--soon { cursor:default; }
-  /* Single-asset reveal (e.g. just an app icon, no screenshot reel yet):
-     show it statically on hover instead of cycling the apexReel keyframes. */
-  .gtile--single:hover .gtile__shots img,
-  .gtile--single:focus-visible .gtile__shots img { animation:none; opacity:1; }
   /* App Store CTA line */
   .gtile__store { margin-top:14px; display:inline-flex; align-items:center; gap:8px;
     font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gc); }

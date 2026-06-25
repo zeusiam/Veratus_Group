@@ -160,13 +160,10 @@ body::-webkit-scrollbar-thumb:hover { background: #2c3038; }
 
 .btn--accent { background: var(--accent); color: #fff; }
 .btn--accent:hover { background: var(--accent-bright); }
-.btn--solid { background: var(--fg); color: var(--ink); }
-.btn--solid:hover { background: #fff; }
 .btn--ghost { background: transparent; color: var(--fg); border-color: var(--line-2); }
 .btn--ghost:hover { border-color: var(--fg); background: rgba(255,255,255,0.04); }
 .on-paper .btn--ghost { color: var(--on-paper); border-color: var(--paper-line); }
 .on-paper .btn--ghost:hover { border-color: var(--on-paper); background: rgba(10,11,13,0.04); }
-.on-paper .btn--solid { background: var(--ink); color: var(--paper); }
 
 /* FileCura — rounded gradient button with 3D depth (matches the app's brand) */
 .btn--filecura {
@@ -221,13 +218,6 @@ body::-webkit-scrollbar-thumb:hover { background: #2c3038; }
   box-shadow: 0 10px 30px -12px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(10,11,13,0.06);
 }
 .fc-logo img { display: block; height: 40px; width: auto; }
-
-/* FileCura app screenshot framed as a window */
-.fc-shot {
-  width: 100%; display: block; border-radius: 10px;
-  border: 1px solid var(--line-2);
-  box-shadow: 0 30px 70px -28px rgba(0,0,0,0.75);
-}
 
 /* FileCura auto-play slideshow (screenshots carry their own window shadow) */
 .fc-slides {
@@ -288,12 +278,10 @@ body::-webkit-scrollbar-thumb:hover { background: #2c3038; }
   color: var(--fg-2);
 }
 .on-paper .tag { border-color: var(--paper-line); color: var(--on-paper-2); }
-.tag--live { color: var(--accent-bright); border-color: var(--accent-line); }
 .tag--dot::before {
   content: ""; width: 6px; height: 6px; border-radius: 50%;
   background: currentColor;
 }
-.tag--soon { color: var(--fg-3); }
 
 .dot-live {
   width: 7px; height: 7px; border-radius: 50%;
@@ -424,7 +412,6 @@ body::-webkit-scrollbar-thumb:hover { background: #2c3038; }
 /* Utility */
 .stack-sm > * + * { margin-top: 12px; }
 .stack > * + * { margin-top: 20px; }
-.stack-lg > * + * { margin-top: 32px; }
 .flex { display: flex; }
 .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--_e,cubic-bezier(.16,.84,.24,1)), transform .7s var(--_e,cubic-bezier(.16,.84,.24,1)); }
